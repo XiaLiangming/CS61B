@@ -1,17 +1,17 @@
 package deque;
 
 public class ArrayDeque<T> implements Deque<T> {
-    protected int capacity;
-    protected int size;
-    protected int beginDex;
-    protected T[] items;
+    private int capacity;
+    private int size;
+    private int beginDex;
+    private T[] items;
 
     @SuppressWarnings("unchecked")
     public ArrayDeque() {
         capacity = 8;
         size = 0;
         beginDex = 0;
-        items = (T []) new Object[capacity];
+        items = (T[]) new Object[capacity];
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ArrayDeque<T> implements Deque<T> {
         }
         System.out.println(result.toString());
     }
-    
+
     @Override
     public T removeFirst() {
         if (size == 0) {
@@ -90,7 +90,7 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @SuppressWarnings("unchecked")
     protected void resize(int newCapacity) {
-        T[] newItems = (T []) new Object[newCapacity];
+        T[] newItems = (T[]) new Object[newCapacity];
         // Unroll
         int headLen = Math.min(capacity - beginDex, size);
         System.arraycopy(items, beginDex, newItems, 0, headLen);
