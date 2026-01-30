@@ -70,8 +70,6 @@ public class GuitarPlayer {
 
         Track[] tracks = sequence.getTracks();
         Track track = sequence.createTrack();
-        int maxSize = 0;
-        int lead = 0;
         for (int i = 0; i < tracks.length; i++) {
             for (int j = 0; j < tracks[i].size(); j++) {
                 track.add(tracks[i].get(j));
@@ -119,7 +117,6 @@ public class GuitarPlayer {
                 if (s >= 0x80 && s <= 0x8F) {
                     // note off
                     int note = data[j++] & 0xFF;
-                    int vel = data[j++] & 0xFF;
                     vol[note] = 0.0;
                 } else if (s >= 0x90 && s <= 0x9F) {
                     // note on?
@@ -129,8 +126,6 @@ public class GuitarPlayer {
                     strings[note].pluck();
                 } else {
                     // status
-                    int d = data[j++] & 0xFF;
-                    int d2 = data[j++] & 0xFF;
                 }
             }
         }

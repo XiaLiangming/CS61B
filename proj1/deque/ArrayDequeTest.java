@@ -86,10 +86,6 @@ public class ArrayDequeTest {
         L.addFirst("string");
         L2.addFirst(3.14159);
         L3.addFirst(true);
-
-        String s = L.removeFirst();
-        double d = L2.removeFirst();
-        boolean b = L3.removeFirst();
     }
 
     @Test
@@ -99,8 +95,6 @@ public class ArrayDequeTest {
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
         ArrayDeque<Integer> L = new ArrayDeque<Integer>();
 
-        boolean passed1 = false;
-        boolean passed2 = false;
         assertEquals("Should return null when removeFirst is called on an empty Deque,", null, L.removeFirst());
         assertEquals("Should return null when removeLast is called on an empty Deque,", null, L.removeLast());
 

@@ -86,10 +86,6 @@ public class LinkedListDequeTest {
         lld1.addFirst("string");
         lld2.addFirst(3.14159);
         lld3.addFirst(true);
-
-        String s = lld1.removeFirst();
-        double d = lld2.removeFirst();
-        boolean b = lld3.removeFirst();
     }
 
     @Test
@@ -99,8 +95,6 @@ public class LinkedListDequeTest {
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
         LinkedListDeque<Integer> lld1 = new LinkedListDeque<Integer>();
 
-        boolean passed1 = false;
-        boolean passed2 = false;
         assertEquals("Should return null when removeFirst is called on an empty Deque,", null, lld1.removeFirst());
         assertEquals("Should return null when removeLast is called on an empty Deque,", null, lld1.removeLast());
 
