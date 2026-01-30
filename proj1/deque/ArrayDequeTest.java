@@ -140,4 +140,38 @@ public class ArrayDequeTest {
         assertEquals((Integer) 10, L.get(2));
         assertEquals((Integer) 15, L.get(3));
     }
+
+    @Test
+    public void equalsTest() {
+        ArrayDeque<Integer> L1 = new ArrayDeque<>();
+        ArrayDeque<Integer> L2 = new ArrayDeque<>();
+        LinkedListDeque<Integer> L3 = new LinkedListDeque<>();
+        LinkedListDeque<Integer> L4 = new LinkedListDeque<>();
+        for (int i = 0; i < 10; i += 1) {
+            L1.addFirst(i);
+            L3.addLast(i);
+        }
+        for (int i = 0; i < 10; i += 1) {
+            L2.addLast(i);
+            L4.addLast(i);
+        }
+        L2.addLast(null);
+        L4.addLast(null);
+        assertFalse(L1.equals(L3));
+        assertTrue(L2.equals(L4));
+    }
+
+    @Test
+    public void iteratorTest() {
+        ArrayDeque<Integer> L = new ArrayDeque<>();
+        for (int i = 0; i < 10; i += 1) {
+            L.addLast(i * 2 + 1);
+        }
+
+        int index = 0;
+        for (int item : L) {
+            assertEquals(index * 2 + 1, item);
+            index += 1;
+        }
+    }
 }

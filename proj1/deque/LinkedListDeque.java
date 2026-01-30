@@ -1,4 +1,5 @@
 package deque;
+import java.util.Iterator;
 
 public class LinkedListDeque<T> implements Deque<T> {
     private class Node {
@@ -6,13 +7,13 @@ public class LinkedListDeque<T> implements Deque<T> {
         Node prev;
         Node next;
 
-        public Node(T item) {
+        Node(T item) {
             this.item = item;
             prev = this;
             next = this;
         }
 
-        public Node(T item, Node prev, Node next) {
+        Node(T item, Node prev, Node next) {
             this.item = item;
             this.prev = prev;
             this.next = next;
@@ -107,4 +108,65 @@ public class LinkedListDeque<T> implements Deque<T> {
         }
         return p.item;
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListDequeIterator();
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null) {
+            return false;
+        }
+
+        if (!(o instanceof Deque)) {
+            return false;
+        }
+
+        Deque<?> other = (Deque<?>) o;
+        if (size() != other.size()) {
+            return false;
+        }
+
+        for (int index = 0; index < size(); index += 1) {
+            T thisItem = get(index);
+            Object otherItem = other.get(index);
+            if (thisItem == null) {
+                if (otherItem != null) {
+                    return false;
+                }
+            } else if (!thisItem.equals(otherItem)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private class LinkedListDequeIterator implements Iterator<T> {
+        private int index;
+        private Node p;
+        LinkedListDequeIterator() {
+            index = 0;
+            p = sentinel.next;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return index < size;
+        }
+
+        @Override
+        public T next() {
+            T item = p.item;
+            p = p.next;
+            index += 1;
+            return item;
+        }
+    }    
 }
