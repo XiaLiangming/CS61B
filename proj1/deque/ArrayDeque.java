@@ -14,56 +14,91 @@ public class ArrayDeque<T> implements Deque<T> {
         items = (T []) new Object[capacity];
     }
 
+    @Override
     public void addFirst(T item) {
-        if (size == capacity) resize(capacity * 4);
+        if (size == capacity) {
+            resize(capacity * 4);
+        }
         beginDex = Math.floorMod(beginDex - 1, capacity);
         items[beginDex] = item;
         size += 1;
     }
 
+    @Override
     public void addLast(T item) {
-        if (size == capacity) resize(capacity * 4);
+        if (size == capacity) {
+            resize(capacity * 4);
+        }
         items[(size + beginDex) % capacity] = item;
         size += 1;
     }
 
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
+    public void printDeque() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < size(); i += 1) {
+            result.append(get(i));
+            result.append(" ");
+        }
+        System.out.println(result.toString());
+    }
+    
+    @Override
     public T removeFirst() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T item = items[beginDex];
         beginDex = (beginDex + 1) % capacity;
         size -= 1;
-        if (size < capacity / 4) resize(capacity / 2);
+        if (size < capacity / 4) {
+            resize(capacity / 2);
+        }
         return item;
     }
 
+    @Override
     public T removeLast() {
-        if (size == 0) return null;
+        if (size == 0) {
+            return null;
+        }
         T item = items[(size + beginDex - 1) % capacity];
         size -= 1;
-        if (size < capacity / 4) resize(capacity / 2);
+        if (size < capacity / 4) {
+            resize(capacity / 2);
+        }
         return item;
     }
 
+    @Override
     public T get(int index) {
-        if (index < 0 || index >= size) return null;
+        if (index < 0 || index >= size) {
+            return null;
+        }
         return items[(index + beginDex) % capacity];
     }
 
     @SuppressWarnings("unchecked")
-    protected void resize(int capacity) {
-        T[] newItems = (T []) new Object[capacity];
+    protected void resize(int newCapacity) {
+        T[] newItems = (T []) new Object[newCapacity];
         // Unroll
-        int headLen = Math.min(this.capacity - beginDex, size);
+        int headLen = Math.min(capacity - beginDex, size);
         System.arraycopy(items, beginDex, newItems, 0, headLen);
         if (beginDex != 0) {
             int tailLen = size - headLen;
             System.arraycopy(items, 0, newItems, headLen, tailLen);
         }
-        this.capacity = capacity;
+        capacity = newCapacity;
         items = newItems;
         beginDex = 0;
     }
