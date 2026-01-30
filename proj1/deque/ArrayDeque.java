@@ -1,7 +1,7 @@
 package deque;
 import java.util.Iterator;
 
-public class ArrayDeque<T> implements Deque<T> {
+public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
     private int capacity;
     private int size;
     private int beginDex;
@@ -129,7 +129,7 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     @SuppressWarnings("unchecked")
-    protected void resize(int newCapacity) {
+    private void resize(int newCapacity) {
         T[] newItems = (T[]) new Object[newCapacity];
         // Unroll
         int headLen = Math.min(capacity - beginDex, size);
