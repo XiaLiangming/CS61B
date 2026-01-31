@@ -124,8 +124,6 @@ public class GuitarPlayer {
                     int vel = data[j++] & 0xFF;
                     vol[note] = vel / 127.0;
                     strings[note].pluck();
-                } else {
-                    // status
                 }
             }
         }
