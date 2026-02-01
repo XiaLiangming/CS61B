@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/Users/maxim/Developer/cs61b/library-sp21/javalib/**/*.jar"
+    ]
+}
