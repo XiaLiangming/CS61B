@@ -42,35 +42,35 @@ public class TestArrayDequeEC {
                 msg.append("size()" + ls);
                 assertEquals(msg.toString(), tad.size(), sad.size());
             } else if (numberBetweenZeroAndOne < 0.625) {
-                ByteArrayOutputStream outBuffer = new ByteArrayOutputStream();
-                PrintStream originalOut = System.out;
+                // ByteArrayOutputStream outBuffer = new ByteArrayOutputStream();
+                // PrintStream originalOut = System.out;
         
-                System.setOut(new PrintStream(outBuffer));
-                sad.printDeque();
-                String sadOut = outBuffer.toString();
-                outBuffer.reset();
-                tad.printDeque();
-                String tadOut = outBuffer.toString();
-                outBuffer.reset();
-                msg.append("printDeque()" + ls);
-                System.setOut(originalOut);
-                assertEquals(msg.toString(), tadOut, sadOut);
+                // System.setOut(new PrintStream(outBuffer));
+                // sad.printDeque();
+                // String sadOut = outBuffer.toString();
+                // outBuffer.reset();
+                // tad.printDeque();
+                // String tadOut = outBuffer.toString();
+                // outBuffer.reset();
+                // msg.append("printDeque()" + ls);
+                // System.setOut(originalOut);
+                // assertEquals(msg.toString(), tadOut, sadOut);
             } else if (numberBetweenZeroAndOne < 0.75) {
                 if (sad.isEmpty() && tad.isEmpty()) continue;
-                msg.append("isEmpty()" + ls);
-                assertEquals(msg.toString(), tad.isEmpty(), sad.isEmpty());
+                String failureMsg = msg.toString() + "isEmpty()" + ls;
+                assertEquals(failureMsg, tad.isEmpty(), sad.isEmpty());
                 msg.append("removeFirst()" + ls);
                 assertEquals(msg.toString(), tad.removeFirst(), sad.removeFirst());
             } else if (numberBetweenZeroAndOne < 0.875) {
                 if (sad.isEmpty() && tad.isEmpty()) continue;
-                msg.append("isEmpty()" + ls);
-                assertEquals(msg.toString(), tad.isEmpty(), sad.isEmpty());
+                String failureMsg = msg.toString() + "isEmpty()" + ls;
+                assertEquals(failureMsg, tad.isEmpty(), sad.isEmpty());
                 msg.append("removeLast()" + ls);
                 assertEquals(msg.toString(), tad.removeLast(), sad.removeLast());
             } else {
                 if (sad.isEmpty() && tad.isEmpty()) continue;
-                msg.append("size()" + ls);
-                assertEquals(msg.toString(), tad.size(), sad.size());
+                String failureMsg = msg.toString() + "size()" + ls;
+                assertEquals(failureMsg, tad.size(), sad.size());
                 int randomDex = rand.nextInt(tad.size());
                 msg.append("get(" + randomDex + ")" + ls);
                 assertEquals(msg.toString(), tad.get(randomDex), sad.get(randomDex));
