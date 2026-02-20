@@ -1,7 +1,5 @@
 package tester;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.Random;
 import org.junit.Test;
 import static org.junit.Assert.*;
