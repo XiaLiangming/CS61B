@@ -1,8 +1,5 @@
 package capers;
 
-import java.io.File;
-import java.util.Arrays;
-
 import static capers.Utils.*;
 import static capers.CapersRepository.*;
 
